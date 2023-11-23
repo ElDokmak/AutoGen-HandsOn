@@ -17,4 +17,9 @@ The figure below shows the built-in agents in AutoGen.
 
 * The UserProxyAgent is conceptually a proxy agent for humans, soliciting human input as the agent's reply at each interaction turn by default and also having the capability to execute code and call functions. The UserProxyAgent triggers code execution automatically when it detects an executable code block in the received message and no human user input is provided. Code execution can be disabled by setting the code_execution_config parameter to False. LLM-based response is disabled by default. It can be enabled by setting llm_config to a dict corresponding to the inference configuration. When llm_config is set as a dictionary, UserProxyAgent can generate replies using an LLM when code execution is not performed.
 
+> NOTE: **human_input_mode**:
+>> 1. **ALWAYS:** the agents prompt for human input every time a message is recieved, the conversation stops when the human input is exit or when is_termination_msg is True and there is no human input.
+>> 2. **TERMINATE:** the agent only prompts for human input only whet a termination message is recieved or the number of auto reply reaches the max_consecutive_auto_reply.
+>> 3. **NEVER:** the agent will never prompt for human input, the conversation stops when the number of auto reply reaches the max_consecutive_auto_reply or when is_temination_msg is True.
+
 > [Source](https://microsoft.github.io/autogen/docs/Getting-Started)
